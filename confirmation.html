@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation - Atypicars82</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .container h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ffc107;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .container a:hover {
+            background: #333;
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Votre demande a bien été envoyée</h1>
+        <p>Nous vous remercions de nous avoir contactés. Vous serez redirigé vers la page d'accueil dans quelques secondes.</p>
+        <a href="index.html">Retour à l'accueil</a>
+    </div>
+
+    <script>
+        // Redirection automatique vers la page d'accueil après 5 secondes
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Atypicars82 - Découvrez des voitures uniques : françaises, youngtimers, et étrangères. Trouvez votre véhicule idéal !">
+    <title>Atypicars82 - Voitures d'exception</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles de base */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Animation d'entrée avec les phares */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeOut 2s ease-in-out 4s forwards;
+        }
+
+        .car-headlights {
+            width: 100%;
+            height: 100%;
+            background: url('images/car-headlights.jpg') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-headlights::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+            opacity: 0;
+            animation: headlights 2s ease-in-out 1s forwards;
+        }
+
+        @keyframes headlights {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Contenu principal */
+        .header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: fadeInDown 1s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #ffffff;
+        }
+
+        .navbar {
+            margin-top: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .nav-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-list a:hover {
+            background: #ec0000;
+            color: #333;
+            border-radius: 5px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            padding: 50px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+            animation: bounceIn 2s;
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ec0000;
+            color: #333;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #333;
+            color: #ec0000;
+            transform: scale(1.1);
+        }
+
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .social-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: #ec0000;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animation d'entrée -->
+    <div class="intro-overlay">
+        <div class="car-headlights"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>Atypicars82</h1>
+                <p>Des voitures qui sortent de l'ordinaire</p>
+            </div>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="voitures_francaises.html">Voitures Françaises</a></li>
+                    <li><a href="youngtimers.html">Youngtimers</a></li>
+                    <li><a href="voitures_etrangeres.html">Voitures Étrangères</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="hero">
+                <h2>Bienvenue sur Atypicars82</h2>
+                <p>Explorez notre collection de véhicules rares et uniques, soigneusement sélectionnés pour les passionnés d'automobiles.</p>
+                <a href="voitures-francaises.html" class="btn">Découvrez nos modèles</a>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 Atypicars82. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        console.log("Document loaded. Initializing event listeners...");
+
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                console.log(`Mouseover on link: ${link.textContent}`);
+                link.style.transform = 'scale(1.1)';
+            });
+            link.addEventListener('mouseout', () => {
+                console.log(`Mouseout from link: ${link.textContent}`);
+                link.style.transform = 'scale(1)';
+            });
+        });
+
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                console.log(`Button clicked: ${event.target.textContent}`);
+            });
+        });
+    </script>
+</body>
+</html>

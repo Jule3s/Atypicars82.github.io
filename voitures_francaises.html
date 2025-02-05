@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voitures Étrangères - Atypicars82</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles de base */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar .nav-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .navbar .nav-list a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .navbar .nav-list a:hover {
+            background: #ec0000;
+            border-radius: 5px;
+            transform: translateY(-3px);
+        }
+
+        /* Galerie */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .car-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        .car-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .car-card img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .car-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Prix sur l'aperçu */
+        .car-card .price-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .car-card:hover .price-overlay {
+            background: rgba(236, 0, 0, 0.8); /* Rouge au survol */
+        }
+
+        /* Fenêtre modale */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        .modal-content img {
+            max-width: 80%;
+            max-height: 80vh;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .modal-content img:hover {
+            transform: scale(1.05);
+        }
+        .modal-content .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #333;
+        }
+        .modal-content .btn {
+            display: inline-block;
+            background: #ec0000;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .modal-content .btn:hover {
+            background: #333;
+            transform: translateY(-3px);
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close:hover {
+            color: #ec0000;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: auto;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Effet de vague au survol des cartes */
+        .car-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+        .car-card:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Atypicars82</h1>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="voitures_francaises.html">Voitures Françaises</a></li>
+                    <li><a href="youngtimers.html">Youngtimers</a></li>
+                    <li><a href="voitures_etrangeres.html">Voitures Étrangères</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="gallery">
+            <div class="car-card" onclick="openModal('images/car1.jpg', '20 000€')">
+                <img src="images/car1.jpg" alt="Voiture 1">
+                <div class="price-overlay">20 000€</div>
+            </div>
+            <div class="car-card" onclick="openModal('images/car2.jpg', '25 500€')">
+                <img src="images/car2.jpg" alt="Voiture 2">
+                <div class="price-overlay">25 500€</div>
+            </div>
+            <div class="car-card" onclick="openModal('images/car3.jpg', '30 000€')">
+                <img src="images/car3.jpg" alt="Voiture 3">
+                <div class="price-overlay">30 000€</div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2025 Atypicars82. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Voiture">
+            <p class="price" id="modalPrice"></p>
+            <a href="contact.html" class="btn">Nous contacter</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal(imageSrc, price) {
+            const modal = document.getElementById('myModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalPrice = document.getElementById('modalPrice');
+
+            modalImage.src = imageSrc;
+            modalPrice.textContent = `Prix: ${price}`;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        // Fermer la modale en cliquant en dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
